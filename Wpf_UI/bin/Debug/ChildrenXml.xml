@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Children>
+  <Child>
+    <Id>303025632</Id>
+    <MotherId>300190055</MotherId>
+    <FirstName>Shani</FirstName>
+    <DateOfBirth>04/01/2017</DateOfBirth>
+    <SpecialNeeds>true</SpecialNeeds>
+    <TheSpecialNeeds>kol minenei beayot</TheSpecialNeeds>
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>332369852</Id>
+    <MotherId>300190055</MotherId>
+    <FirstName>Itamar</FirstName>
+    <DateOfBirth>04/05/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>369852147</Id>
+    <MotherId>300190055</MotherId>
+    <FirstName>Uriya</FirstName>
+    <DateOfBirth>04/10/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>258965236</Id>
+    <MotherId>200100666</MotherId>
+    <FirstName>Yair</FirstName>
+    <DateOfBirth>04/12/2016</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>362565236</Id>
+    <MotherId>200100666</MotherId>
+    <FirstName>Oriel</FirstName>
+    <DateOfBirth>04/09/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>300256300</Id>
+    <MotherId>301043366</MotherId>
+    <FirstName>Adi</FirstName>
+    <DateOfBirth>04/08/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>332584563</Id>
+    <MotherId>301036563</MotherId>
+    <FirstName>Noa</FirstName>
+    <DateOfBirth>04/09/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>333366552</Id>
+    <MotherId>301036563</MotherId>
+    <FirstName>Avi</FirstName>
+    <DateOfBirth>04/07/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>323232652</Id>
+    <MotherId>301043333</MotherId>
+    <FirstName>David</FirstName>
+    <DateOfBirth>04/04/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>398789547</Id>
+    <MotherId>301043333</MotherId>
+    <FirstName>Yael</FirstName>
+    <DateOfBirth>04/03/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>300106365</Id>
+    <MotherId>301043333</MotherId>
+    <FirstName>Yosi</FirstName>
+    <DateOfBirth>04/02/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds />
+    <ContractSigned>false</ContractSigned>
+  </Child>
+  <Child>
+    <Id>369852525</Id>
+    <MotherId>301043333</MotherId>
+    <FirstName>Neriya</FirstName>
+    <DateOfBirth>04/06/2017</DateOfBirth>
+    <SpecialNeeds>false</SpecialNeeds>
+    <TheSpecialNeeds></TheSpecialNeeds>
+    <ContractSigned>false</ContractSigned>
+  </Child>
+</Children>

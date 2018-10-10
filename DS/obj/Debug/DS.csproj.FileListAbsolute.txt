@@ -1,0 +1,8 @@
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\bin\Debug\DS.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\bin\Debug\DS.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\bin\Debug\BE.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\bin\Debug\BE.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\obj\Debug\DS.csprojResolveAssemblyReference.cache
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\obj\Debug\DS.csproj.CoreCompileInputs.cache
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\obj\Debug\DS.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\DS\obj\Debug\DS.pdb

@@ -1,0 +1,529 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_UI"
+        xmlns:converters="clr-namespace:Wpf_UI"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="Wpf_UI.NanniesWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+                Title="NanniesWindow" Height="700" Width="900">
+    <Window.Resources>
+        <local:SelectedItemToIsEnabledConverter x:Key="selectedItemToIsEnabledConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="313*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+            <TabItem x:Name="addNannyPage" Header="Add" Validation.Error="AddNannyPage_Error">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="16*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content= "Enter the details of the nanny, fields marked with * must be filled:" FontWeight="DemiBold" FontSize="18" Margin="23,5,0,0"/>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350*"/>
+                            <ColumnDefinition Width="537*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="1.6,0,0.2,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Working days and hours:" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20"/>
+                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0.5" />
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="from:" FontWeight="Bold" Background="LightGray" Grid.Column="3" Margin="1,5,1,1"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                <Label Content="to:" FontWeight="Bold" Background="LightGray" Grid.Column="4" Margin="1,5,1,1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                <Label Content="Sunday:" Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Monday:" Grid.Row="2"    Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Tuesday:" Grid.Row="3"   Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Wednesday:" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Thursday:" Grid.Row="5"  Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Friday:" Grid.Row="6"    Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <CheckBox x:Name="Sunday"    IsChecked="{Binding WorkDays[0], Mode=TwoWay}"  Grid.Row="1" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Monday"    IsChecked="{Binding WorkDays[1], Mode=TwoWay}"  Grid.Row="2" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Tuesday"   IsChecked="{Binding WorkDays[2], Mode=TwoWay}"  Grid.Row="3" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Wednesday" IsChecked="{Binding WorkDays[3], Mode=TwoWay}"  Grid.Row="4" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Thursday"  IsChecked="{Binding WorkDays[4], Mode=TwoWay}"  Grid.Row="5" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Friday"    IsChecked="{Binding WorkDays[5], Mode=TwoWay}"  Grid.Row="6" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="1" Grid.Column="3" Value="{Binding WorkHours[0].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" IsEnabled="{Binding ElementName=Sunday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="2" Grid.Column="3" Value="{Binding WorkHours[1].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Monday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="3" Grid.Column="3" Value="{Binding WorkHours[2].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Tuesday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="4" Grid.Column="3" Value="{Binding WorkHours[3].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Wednesday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="5" Grid.Column="3" Value="{Binding WorkHours[4].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Thursday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="6" Grid.Column="3" Value="{Binding WorkHours[5].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Friday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="1" Grid.Column="4" Value="{Binding WorkHours[0].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Sunday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="2" Grid.Column="4" Value="{Binding WorkHours[1].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Monday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="3" Grid.Column="4" Value="{Binding WorkHours[2].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Tuesday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="4" Grid.Column="4" Value="{Binding WorkHours[3].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Wednesday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="5" Grid.Column="4" Value="{Binding WorkHours[4].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Thursday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="6" Grid.Column="4" Value="{Binding WorkHours[5].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Friday, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                            </Grid>
+                            <Button x:Name="addButton" Background="{StaticResource MyButtonBackground}" Content="Add" Click="AddButton_Click" Grid.Row="2"  FontSize="25" Margin="115.2,123.2,83.6,9.4">
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=idTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=dateOfBirthDatePicker, Path=SelectedDate}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=vacationDaysComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=typeOfPaymentComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=idTextBox, Path=Text}" Value="0">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=addressTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=phonNumberTextBox, Path=Text}" Value="0">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=lastNameTextBox, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                        <Grid x:Name="grid1" Grid.Row="1" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" Height="544" Width="269">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Address: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                            <local:AutoCompleteAddressTextBox x:Name="addressTextBox" Style="{StaticResource ToolTipErrors}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6"  VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Date Of Birth: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dateOfBirthDatePicker" Style="{StaticResource ToolTipErrors}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                            <Label Content="Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="elevatorCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True,  ValidatesOnExceptions=true}" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBox x:Name="firstNameTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                            <TextBox x:Name="floorTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Hourly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                            <TextBox x:Name="hourlyRateTextBox"  Margin="3" Grid.Column="1" HorizontalAlignment="Left" Height="23"  Grid.Row="5" Text="{Binding HourlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <!--IsEnabled="{Binding ElementName=typeOfPaymentComboBox, Path=SelectedItem, Converter={StaticResource selectedItemToIsEnabledConverter}}"-->
+                            <Label Content="Id *:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                            <TextBox x:Name="idTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="2.6,0,0,4" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120"/>
+                            <Label Content="Last Name: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                            <TextBox x:Name="lastNameTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Max Children:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+                            <TextBox x:Name="maxChildrenTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding MaxChildren, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Maximum Age Of Child:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+                            <TextBox x:Name="maximumAgeOfChildTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding MaximumAgeOfChild, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Minimum Age Of Child:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+                            <TextBox x:Name="minimumAgeOfChildTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding MinimumAgeOfChild, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
+                            <TextBox x:Name="monthlyRateTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="11" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Phone Number: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="12" VerticalAlignment="Center"/>
+                            <TextBox x:Name="phonNumberTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="12" Text="{Binding PhonNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
+                            <TextBox x:Name="recommendationsTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="13" Text="{Binding Recommendations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Type Of Payment: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="typeOfPaymentComboBox" Grid.Column="1" SelectedItem="{Binding TypeOfPayment, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="14"/>
+                            <Label Content="Vacation Days By: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="vacationDaysComboBox" SelectedItem="{Binding VacationDays, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="1" Margin="3" Grid.Row="15"/>
+                            <Label Content="Years Of Experience:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
+                            <TextBox x:Name="yearsOfExperienceTextBox" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="16" Text="{Binding YearsOfExperience, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="details and Remove">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="123*"/>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="349*"/>
+                        <RowDefinition Height="114*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="313*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Select nanny to see her details or to remove her:" FontWeight="Bold" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button x:Name="removeButton" Content="Remove" FontSize="25" Background="{StaticResource MyButtonBackground}" Foreground="Black" Click="RemoveButton_Click" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="348" Height="50" Grid.Column="1" Grid.Row="3">
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=removeNannyComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <ComboBox x:Name="removeNannyComboBox" SelectionChanged="RemoveNannyCombobox_SelectionChanged" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="IdAndName" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="348" Height="42" Grid.Row="1" Grid.Column="1"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  CanContentScroll="True" Grid.Column="1" Grid.Row="2" >
+                        <Label x:Name="nannyToRemoveLabel" FontSize="20" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="updateNannyPage" Header="Update" Validation.Error="UpdateNannyPage_Error">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="16*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content= "Select the nanny you want to update:" FontWeight="DemiBold" FontSize="18" Margin="23,5,0,0"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350*"/>
+                            <ColumnDefinition Width="537*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="1.6,0,0.2,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Working days and hours:" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20"/>
+                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0.5" />
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="from:" FontWeight="Bold" Background="LightGray" Grid.Column="3" Margin="1,5,1,1"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                <Label Content="to:" FontWeight="Bold" Background="LightGray" Grid.Column="4" Margin="1,5,1,1" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                <Label Content="Sunday:" Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Monday:" Grid.Row="2"    Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Tuesday:" Grid.Row="3"   Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Wednesday:" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Thursday:" Grid.Row="5"  Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Friday:" Grid.Row="6"    Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                                <CheckBox x:Name="Sunday_U"    IsChecked="{Binding WorkDays[0], Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Monday_U"    IsChecked="{Binding WorkDays[1], Mode=TwoWay}" Grid.Row="2" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Tuesday_U"   IsChecked="{Binding WorkDays[2], Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Wednesday_U" IsChecked="{Binding WorkDays[3], Mode=TwoWay}" Grid.Row="4" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Thursday_U"  IsChecked="{Binding WorkDays[4], Mode=TwoWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <CheckBox x:Name="Friday_U"    IsChecked="{Binding WorkDays[5], Mode=TwoWay}" Grid.Row="6" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="1" Grid.Column="3" Value="{Binding WorkHours[0].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Sunday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="2" Grid.Column="3" Value="{Binding WorkHours[1].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Monday_U,  Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="3" Grid.Column="3" Value="{Binding WorkHours[2].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Tuesday_U,  Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="4" Grid.Column="3" Value="{Binding WorkHours[3].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Wednesday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="5" Grid.Column="3" Value="{Binding WorkHours[4].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Thursday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="6" Grid.Column="3" Value="{Binding WorkHours[5].BeginningTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Friday_U,  Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="1" Grid.Column="4" Value="{Binding WorkHours[0].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Sunday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="2" Grid.Column="4" Value="{Binding WorkHours[1].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Monday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="3" Grid.Column="4" Value="{Binding WorkHours[2].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Tuesday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="4" Grid.Column="4" Value="{Binding WorkHours[3].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Wednesday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="5" Grid.Column="4" Value="{Binding WorkHours[4].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Thursday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                                <xctk:TimeSpanUpDown ShowSeconds="False" Grid.Row="6" Grid.Column="4" Value="{Binding WorkHours[5].EndTime, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnNotifyDataErrors=True}" IsEnabled="{Binding ElementName=Friday_U, Path=IsChecked}" Style="{StaticResource TextBoxStyle}"/>
+                            </Grid>
+                            <Button x:Name="updateButton" Background="{StaticResource MyButtonBackground}" Content="Update" Click="UpdateButton_Click"  Grid.Row="2"  FontSize="25" Margin="115.2,123.2,83.6,9.4">
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=updateNannyComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=addressTextBox_U, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=phonNumberTextBox_U, Path=Text}" Value="0">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=phonNumberTextBox_U, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=vacationDaysComboBox_U, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=typeOfPaymentComboBox_U, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=lastNameTextBox_U, Path=Text}" Value="">
+                                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                        <Grid x:Name="UpdateDetails" Grid.Row="1"  HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" Height="544" Width="269">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Address: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                            <local:AutoCompleteAddressTextBox x:Name="addressTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Date Of Birth: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dateOfBirthDatePicker_U" Style="{StaticResource ToolTipErrors}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                            <Label Content="Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="elevatorCheckBox_U" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True,  ValidatesOnExceptions=true}" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBox x:Name="firstNameTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                            <TextBox x:Name="floorTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Hourly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                            <TextBox x:Name="hourlyRateTextBox_U" Style="{StaticResource TextBoxStyle}" Margin="3" Grid.Column="1" HorizontalAlignment="Left" Height="23"  Grid.Row="5" Text="{Binding HourlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="updateNannyComboBox" SelectionChanged="UpdateNannyComboBox_SelectionChanged" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="IdAndName" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="2.6,0,0,4" Grid.Row="0" VerticalAlignment="Bottom" Width="120"/>
+                            <Label Content="Last Name:*" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                            <TextBox x:Name="lastNameTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Max Children:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+                            <TextBox x:Name="maxChildrenTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding MaxChildren, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Maximum Age Of Child:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+                            <TextBox x:Name="maximumAgeOfChildTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding MaximumAgeOfChild, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Minimum Age Of Child:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+                            <TextBox x:Name="minimumAgeOfChildTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding MinimumAgeOfChild, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
+                            <TextBox x:Name="monthlyRateTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="11" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Phone Number: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="12" VerticalAlignment="Center"/>
+                            <TextBox x:Name="phonNumberTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="12" Text="{Binding PhonNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
+                            <TextBox x:Name="recommendationsTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="13" Text="{Binding Recommendations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                            <Label Content="Type Of Payment: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="typeOfPaymentComboBox_U" Grid.Column="1" SelectedItem="{Binding TypeOfPayment, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="2.6,3,2.8,0" Grid.Row="14" Height="26" VerticalAlignment="Top"/>
+                            <Label Content="Vacation Days By: *" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="vacationDaysComboBox_U" SelectedItem="{Binding VacationDays, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="1" Margin="3" Grid.Row="15"/>
+                            <Label x:Name="vacationDaysLabel_U" Content="{Binding VacationDaysBy, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="1" Margin="3" Width="10" Grid.Row="15"/>
+
+                            <Label Content="Years Of Experience:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
+                            <TextBox x:Name="yearsOfExperienceTextBox_U" Style="{StaticResource TextBoxStyle}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="16" Text="{Binding YearsOfExperience, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnDataErrors=True, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="nanniesGroupingPage" Header="Nannies by children age">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.2"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="{StaticResource MyButtonBackground}" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="Nannies classified by child's age" FontWeight="DemiBold" Width="300" VerticalAlignment="Center" Margin="10" Height="auto" FontSize="20" />
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RadioButton x:Name="minAge" Content="By min age   " Click="GroupingRadioButton_Click"/>
+                            <RadioButton x:Name="maxAge" Content="By max age   " Click="GroupingRadioButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,1.8,0.2,0.4" Grid.ColumnSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.ColumnSpan="2" Margin="0,0,0.2,-0.2">
+                            <DataGrid Name="Grouping" Width="684" Height="Auto" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" IsHitTestVisible="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="age" Binding="{Binding Path=Key}" ElementStyle="{StaticResource DataGridTextBlock}" Width="50"/>
+                                    <DataGridTemplateColumn Header="ID" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                 IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25" 
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=Id}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="4,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="first name" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=FirstName}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="last name" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=LastName}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="phone number" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=PhonNumber}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="address" Width="300">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="300" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="300" Binding="{Binding Path=Address}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="nanniesByVacationDaysPage" Header="Nannies by vacation days">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.2"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="{StaticResource MyButtonBackground}" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="Nannies by vacation days" FontWeight="DemiBold" Margin="10" Width="auto" Height="auto" FontSize="20" />
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RadioButton x:Name="official" Width="auto" Click="NanniesByVacationDays_Button_Click"  Content="By ministry of education    "/>
+                            <RadioButton x:Name="tamat" Width="auto" Click="NanniesByVacationDays_Button_Click" Content="By Tamat"/>
+                        </StackPanel>
+                        <Button x:Name="nanniesByVacationDays_Button" Click="NanniesByVacationDays_Button_Click" Background="{StaticResource myBackround}"  Margin="10" Width="80" Height="30" Content="Refresh"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,1.8,0.2,0.4" Grid.ColumnSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.ColumnSpan="2" Margin="0,0,0.2,-0.2">
+                            <DataGrid Width="704" Height="Auto" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" IsHitTestVisible="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ID"  Binding="{Binding Path=Id}" ElementStyle="{StaticResource DataGridTextBlock}" Width="100"/>
+                                    <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" ElementStyle="{StaticResource DataGridTextBlock}" Width="100"/>
+                                    <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}" ElementStyle="{StaticResource DataGridTextBlock}" Width="100"/>
+                                    <DataGridTextColumn Header="Phone Number" Binding="{Binding Path=PhonNumber}" ElementStyle="{StaticResource DataGridTextBlock}" Width="100"/>
+                                    <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" ElementStyle="{StaticResource DataGridTextBlock}" Width="200"/>
+                                    <DataGridTextColumn Header="Vacation days by" Binding="{Binding Path=VacationDays}" ElementStyle="{StaticResource DataGridTextBlock}" Width="150"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

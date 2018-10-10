@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Contracts>
+  <Contract>
+    <ContractNumber>10000001</ContractNumber>
+    <NannyId>300190000</NannyId>
+    <ChildId>300106365</ChildId>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>14/01/2018</DateOfBeginning>
+    <DateOfEnd>14/01/2019</DateOfEnd>
+    <HadInterview>true</HadInterview>
+    <PayForHour>15</PayForHour>
+    <PayForMonth>0</PayForMonth>
+    <TypeOfPayment>HOURLY</TypeOfPayment>
+    <FinalPayment>2210</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000002</ContractNumber>
+    <NannyId>200300600</NannyId>
+    <ChildId>374747474</ChildId>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>14/01/2018</DateOfBeginning>
+    <DateOfEnd>14/01/2019</DateOfEnd>
+    <HadInterview>true</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>950</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>950</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+</Contracts>

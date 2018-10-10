@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Contracts>
+  <Contract>
+    <ContractNumber>10000001</ContractNumber>
+    <NannyId>325685214</NannyId>
+    <NannyIdAndName>325685214  Haya Cohen</NannyIdAndName>
+    <ChildId>303025632</ChildId>
+    <ChildIdAndName>303025632  Shani</ChildIdAndName>
+    <MotherId>300190055</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1200</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1200</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000002</ContractNumber>
+    <NannyId>300444444</NannyId>
+    <NannyIdAndName>300444444  Adi Shurin</NannyIdAndName>
+    <ChildId>332369852</ChildId>
+    <ChildIdAndName>332369852  Itamar</ChildIdAndName>
+    <MotherId>300190055</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>990</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>990</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000003</ContractNumber>
+    <NannyId>222555666</NannyId>
+    <NannyIdAndName>222555666  Miri Harary</NannyIdAndName>
+    <ChildId>369852147</ChildId>
+    <ChildIdAndName>369852147  Uriya</ChildIdAndName>
+    <MotherId>300190055</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1000</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1000</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000004</ContractNumber>
+    <NannyId>325685214</NannyId>
+    <NannyIdAndName>325685214  Haya Cohen</NannyIdAndName>
+    <ChildId>258965236</ChildId>
+    <ChildIdAndName>258965236  Yair</ChildIdAndName>
+    <MotherId>200100666</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1200</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1200</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000005</ContractNumber>
+    <NannyId>222555666</NannyId>
+    <NannyIdAndName>222555666  Miri Harary</NannyIdAndName>
+    <ChildId>362565236</ChildId>
+    <ChildIdAndName>362565236  Oriel</ChildIdAndName>
+    <MotherId>200100666</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1000</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1000</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000006</ContractNumber>
+    <NannyId>325685214</NannyId>
+    <NannyIdAndName>325685214  Haya Cohen</NannyIdAndName>
+    <ChildId>300256300</ChildId>
+    <ChildIdAndName>300256300  Adi</ChildIdAndName>
+    <MotherId>301043366</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1200</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1200</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000007</ContractNumber>
+    <NannyId>222555666</NannyId>
+    <NannyIdAndName>222555666  Miri Harary</NannyIdAndName>
+    <ChildId>332584563</ChildId>
+    <ChildIdAndName>332584563  Noa</ChildIdAndName>
+    <MotherId>301036563</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1000</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1000</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000008</ContractNumber>
+    <NannyId>325685214</NannyId>
+    <NannyIdAndName>325685214  Haya Cohen</NannyIdAndName>
+    <ChildId>333366552</ChildId>
+    <ChildIdAndName>333366552  Avi</ChildIdAndName>
+    <MotherId>301036563</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1200</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1200</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000009</ContractNumber>
+    <NannyId>325685214</NannyId>
+    <NannyIdAndName>325685214  Haya Cohen</NannyIdAndName>
+    <ChildId>369852525</ChildId>
+    <ChildIdAndName>369852525  Neriya</ChildIdAndName>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>1200</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>1200</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000010</ContractNumber>
+    <NannyId>300444444</NannyId>
+    <NannyIdAndName>300444444  Adi Shurin</NannyIdAndName>
+    <ChildId>323232652</ChildId>
+    <ChildIdAndName>323232652  David</ChildIdAndName>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>true</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>990</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>990</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000011</ContractNumber>
+    <NannyId>300444444</NannyId>
+    <NannyIdAndName>300444444  Adi Shurin</NannyIdAndName>
+    <ChildId>398789547</ChildId>
+    <ChildIdAndName>398789547  Yael</ChildIdAndName>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>false</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>990</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>970.19999999999993</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+  <Contract>
+    <ContractNumber>10000012</ContractNumber>
+    <NannyId>215300054</NannyId>
+    <NannyIdAndName>215300054  Shifra Levi</NannyIdAndName>
+    <ChildId>300106365</ChildId>
+    <ChildIdAndName>300106365  Yosi</ChildIdAndName>
+    <MotherId>301043333</MotherId>
+    <ContractSigned>false</ContractSigned>
+    <DateOfBeginning>21/02/2018</DateOfBeginning>
+    <DateOfEnd>21/02/2019</DateOfEnd>
+    <HadInterview>false</HadInterview>
+    <PayForHour>0</PayForHour>
+    <PayForMonth>880</PayForMonth>
+    <TypeOfPayment>MONTHLY</TypeOfPayment>
+    <FinalPayment>880</FinalPayment>
+    <RangeOfDistance>0</RangeOfDistance>
+  </Contract>
+</Contracts>

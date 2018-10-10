@@ -1,0 +1,387 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_UI"
+        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="Wpf_UI.ContractsWindow"
+        mc:Ignorable="d"
+        Title="ContractsWindow" Height="700" Width="900">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="522*"/>
+            <RowDefinition Height="149*"/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
+            <TabItem x:Name="addContractPage" Header="Add" Validation.Error="ErrorsManagment">
+                <Canvas Background="{StaticResource myBackround}">
+                    <Label Content= "Enter the contract's details:" FontSize="20" FontWeight="DemiBold" Canvas.Top="20" Canvas.Left="310"/>
+                    <Label Content="Child :" Canvas.Top="90" Canvas.Left="100" FontSize="20" FontWeight="Bold" Height="auto" Width="100"/>
+                    <ComboBox x:Name="childIdComboBox" SelectionChanged="ChildIdComboBox_SelectionChanged"  Canvas.Top="90" Canvas.Left="180" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="IdAndName" Style="{StaticResource ToolTipErrors}" Height="30" Width="130" />
+                    <Label Content="Nannies:" Canvas.Top="90" Canvas.Left="530" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Height="auto" Width="110"/>
+                    <ListBox x:Name="nannyIdListBox" DisplayMemberPath="IdAndName" Canvas.Top="127" Canvas.Left="470" Style="{StaticResource ToolTipErrors}" IsTextSearchEnabled="True" TextSearch.TextPath="IdAndName" Width="225" Height="206"/>
+                    <Grid Canvas.Top="150" Canvas.Left="710" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox x:Name="filtersCheckBox" Content="Filters:" Grid.ColumnSpan="2" HorizontalAlignment="Left"  VerticalAlignment="Center" FontWeight="Light" Width="auto" Height="auto" Margin="3">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.3" ScaleY="1.3" />
+                            </CheckBox.LayoutTransform>
+                            <CheckBox.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=childIdComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Button.IsEnabled" Value="false"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
+                        <CheckBox x:Name="withElevatorCheckBox" IsEnabled="{Binding ElementName=filtersCheckBox, Path=IsChecked}" Grid.Row="1" Content="With elevator" Height="auto" Grid.ColumnSpan="2" Margin="3" />
+                        <CheckBox x:Name="daysAndHoursCheckBox" IsEnabled="{Binding ElementName=filtersCheckBox, Path=IsChecked}" Grid.Row="2" Content="Days and hours" Height="auto" Grid.ColumnSpan="2" Margin="3" />
+                        <ComboBox x:Name="experienceComboBox" IsEnabled="{Binding ElementName=filtersCheckBox, Path=IsChecked}" Grid.Row="3" Margin="3" Width="45"  />
+                        <ComboBox x:Name="floorComboBox" IsEnabled="{Binding ElementName=filtersCheckBox, Path=IsChecked}" Grid.Row="4" Margin="3" Width="45"  />
+                        <Label Content="Experience:" Grid.Column="1" Grid.Row="3" Margin="3"/>
+                        <Label Content="Floor:" Grid.Column="1" Grid.Row="4" Margin="3"/>
+                        <Button x:Name="nanniesFilter_Button" Click="NanniesFilter_Button_Click" Width="65" Height="20" Content="Search" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="{StaticResource MyButtonBackground}">
+                            <Button.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=childIdComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Button.IsEnabled" Value="false"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=filtersCheckBox, Path=IsChecked}" Value="False">
+                                            <Setter Property="Button.IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                    <CheckBox x:Name="contractSignedCheckBox" Content="Contract Signed:" FontWeight="Heavy" Canvas.Top="450" Canvas.Left="285" IsChecked="{Binding ContractSigned, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="auto" Width="auto">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="3" ScaleY="3" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <Grid  HorizontalAlignment="Center" Canvas.Top="175" Canvas.Left="100" Height="96" Width="250">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Date Of Beginning:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dateOfBeginningDatePicker_U" Style="{StaticResource ToolTipErrors}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" SelectedDate="{Binding DateOfBeginning, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                        <Label Content="Date Of End:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dateOfEndDatePicker_U" Style="{StaticResource ToolTipErrors}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding DateOfEnd, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                        <Label Content="Had Interview:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="hadInterviewCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding HadInterview, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Button x:Name="addButton" Canvas.Top="540" Canvas.Left="300" Background="{StaticResource MyButtonBackground}" Content="Add" Click="AddButton_Click" FontSize="30" Width="325" Height="70">
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=childIdComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=nannyIdListBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Details and Remove">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="109*"/>
+                        <RowDefinition Height="46*"/>
+                        <RowDefinition Height="374*"/>
+                        <RowDefinition Height="114*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="313*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Select contract to see its details or to remove it:" FontWeight="Bold" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Grid.ColumnSpan="2"/>
+                    <Button x:Name="removeButton" Background="{StaticResource MyButtonBackground}" Content="Remove" FontSize="25" Foreground="Black" Click="RemoveButton_Click"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="348" Height="50" Grid.Column="1" Grid.Row="3">
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=removeContractComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <ComboBox x:Name="removeContractComboBox" SelectionChanged="RemoveContractComboBox_SelectionChanged"  IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="NumberAndSignatures" FontSize="20" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="348" Height="42" Grid.Column="1" Grid.Row="1"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  CanContentScroll="True" Grid.Column="1" Grid.Row="2" >
+                        <Label x:Name="contractToRemoveLabel" Content="{Binding ElementName=removeContractComboBox, Path=SelectedItem,  ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="25" Grid.Column="1" Grid.Row="2"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="updateContractPage" Header="Update" Validation.Error="ErrorsManagment">
+                <Canvas Background="{StaticResource myBackround}">
+                    <Label Content= "Select the contract you want to update:" Canvas.Top="25" Canvas.Left="160" FontSize="20" FontWeight="DemiBold"/>
+                    <ComboBox x:Name="UpdateContractsComboBox" Canvas.Top="28" Canvas.Left="540" SelectionChanged="ContractsNumbersComboBox_SelectionChanged" Height="30" Width="200"/>
+                    <Label Content="Child :" Canvas.Top="110" Canvas.Left="150" FontSize="20" FontWeight="Bold" Height="auto" Width="100"/>
+                    <Label x:Name="childIdUpdatePage" Content="{Binding ChildIdAndName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" FontSize="20" Canvas.Top="110" Canvas.Left="250" Style="{StaticResource ToolTipErrors}" Height="auto" Width="auto" />
+                    <Label Content="Nanny:" Canvas.Top="110" Canvas.Left="480" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Height="auto" Width="110"/>
+                    <Label x:Name="nannyIdUpdatePage" Content="{Binding NannyIdAndName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Canvas.Top="110" Canvas.Left="580" FontSize="20" Style="{StaticResource ToolTipErrors}" Width="auto" Height="auto"/>
+                    <CheckBox x:Name="contractSignedCheckBox_U" Content="Contract Signed:" FontWeight="Heavy" Canvas.Top="450" Canvas.Left="285" IsChecked="{Binding ContractSigned, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="auto" Width="auto">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="3" ScaleY="3" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
+                    <Button x:Name="updateButton" Canvas.Top="540" Canvas.Left="300" Background="{StaticResource MyButtonBackground}" Content="Update" Click="UpdateButton_Click"  FontSize="30" Width="325" Height="70">
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=UpdateContractsComboBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Grid x:Name="grid1" Canvas.Left="320" Canvas.Top="180">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Date Of Beginning:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dateOfBeginningDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" SelectedDate="{Binding DateOfBeginning, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                        <Label Content="Date Of End:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dateOfEndDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding DateOfEnd, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                        <Label Content="Final Payment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBox x:Name="finalPaymentTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FinalPayment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Had Interview:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="hadInterviewCheckBox_U" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding HadInterview, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                        <Label Content="Pay For Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox x:Name="payForHourTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding PayForHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Pay For Month:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                        <TextBox x:Name="payForMonthTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding PayForMonth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <Label Content="Type Of Payment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="typeOfPaymentComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding TypeOfPayment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120"/>
+                    </Grid>
+                </Canvas>
+            </TabItem>
+            <TabItem x:Name="SignedUnsignedContractPage" Header="Signed/Unsigned contract">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.2"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="{StaticResource MyButtonBackground}" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton x:Name="signed" Click="SignedUnsignedContractPage_Click" Margin="10" Width="auto"  Content="Signed contracts    "/>
+                        <RadioButton x:Name="unSigned" Click="SignedUnsignedContractPage_Click" Margin="10" Width="auto" Content="Unsigned contracts      "/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,1.8,0.2,0.4" Grid.ColumnSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.ColumnSpan="2" Margin="0,0,0.2,-0.2">
+                            <DataGrid Width="704" Height="Auto" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" IsHitTestVisible="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Serial number"  Binding="{Binding Path=ContractNumber}" ElementStyle="{StaticResource DataGridTextBlock}" Width="200"/>
+                                    <DataGridTextColumn Header="Nanny details" Binding="{Binding Path=NannyIdAndName}" ElementStyle="{StaticResource DataGridTextBlock}" Width= "251"/>
+                                    <DataGridTextColumn Header="Child Details" Binding="{Binding Path=ChildIdAndName}" ElementStyle="{StaticResource DataGridTextBlock}" Width= "251"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ContractsByDistancePage" Header="Contracts by distance">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.2"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="{StaticResource MyButtonBackground}" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label x:Name="ContractsByDistancePage_Label" Content="Contracts grouped by the distance between the nanny and the mother" FontWeight="DemiBold" Width="auto" VerticalAlignment="Center" Margin="10" Height="auto" FontSize="20" />
+                        <Button x:Name="ContractsByDistancePage_Button" Content="GO!" Click="ContractsByDistancePage_Button_Click"  FontSize="20" Background="OrangeRed"  Margin="10" Width="100"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,1.8,0.2,0.4" Grid.ColumnSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.ColumnSpan="2" Margin="0,0,0.2,-0.2">
+                            <DataGrid Name="Grouping" Width="630" Height="Auto" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" IsHitTestVisible="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Distance (km)" Binding="{Binding Path=Key}" ElementStyle="{StaticResource DataGridTextBlock}" Width="90"/>
+                                    <DataGridTemplateColumn Header="Serial number" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                 IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25" 
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=ContractNumber}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="4,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Nanny details" Width="170">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="170" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="170" Binding="{Binding Path=NannyIdAndName}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Child Details" Width="170">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="170" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="170" Binding="{Binding Path=ChildIdAndName}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Mother ID" Width="100">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="100" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="100" Binding="{Binding Path=MotherId}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ContractsByNanniesPage" Header="Contracts by nannies">
+                <Grid Background="{StaticResource myBackround}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55.2"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Background="{StaticResource MyButtonBackground}" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton x:Name="signedOnly" Click="SignedUnsignedContractPage_Click" Margin=  "13" Width="auto"  Content="Signed contracts only    "/>
+                        <RadioButton x:Name="allContracts" Click="SignedUnsignedContractPage_Click" Margin="13" Width="auto" Content="all contracts      "/>
+                        <Button x:Name="ContractsByNannies_Button" Click="ContractsByNannies_Button_Click"  Background="{StaticResource myBackround}"  Margin="10" Width="80" Height="30" Content="Refresh"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,1.8,0.2,0.4" Grid.ColumnSpan="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.ColumnSpan="2" Margin="0,0,0.2,-0.2">
+                            <DataGrid Name="Grouping1" Width="603" Height="Auto" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" IsHitTestVisible="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nanny details" Binding="{Binding Path=Key}" ElementStyle="{StaticResource DataGridTextBlock}" Width="200"/>
+                                    <DataGridTemplateColumn Header="Child details" Width="200">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                 IsReadOnly="True" HeadersVisibility="None" Width="200" RowHeight="25" 
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="200" Binding="{Binding Path=ChildIdAndName}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="4,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Mother Id" Width="200">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DataGrid Name="list" AutoGenerateColumns="False" ItemsSource="{Binding}" IsHitTestVisible="False" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="None" Width="200" RowHeight="25"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="200" Binding="{Binding Path=MotherId}">
+                                                            <DataGridTextColumn.ElementStyle>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                                    <Setter Property="Margin" Value="5,0"/>
+                                                                </Style>
+                                                            </DataGridTextColumn.ElementStyle>
+                                                        </DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

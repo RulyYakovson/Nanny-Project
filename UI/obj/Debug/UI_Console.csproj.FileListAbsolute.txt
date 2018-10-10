@@ -1,0 +1,28 @@
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.exe.config
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.exe
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.pdb
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\BE.dll
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\BL.dll
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\BE.pdb
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\bin\Debug\BL.pdb
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.csprojResolveAssemblyReference.cache
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.csproj.CoreCompileInputs.cache
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.exe
+C:\Users\1\source\repos\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.csprojResolveAssemblyReference.cache
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.csproj.CoreCompileInputs.cache
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.exe
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\obj\Debug\UI_Console.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.exe.config
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.exe
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\UI_Console.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\BE.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\BL.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\BE.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\BL.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\DAL.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\DS.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\DAL.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\DS.pdb
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\GoogleMapsApi.dll
+C:\Users\1\Desktop\תרגילי בית\dotNet5778_Project01_0055_3286\UI\bin\Debug\BL.dll.config
