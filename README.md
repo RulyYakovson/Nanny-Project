@@ -1,4 +1,4 @@
-![Grade: 98](https://img.shields.io/badge/Grade-100-brightgreen.svg) 
+![Grade: 98](https://img.shields.io/badge/Grade-98-brightgreen.svg) 
 
 # Nanny Project
 Mini Project in .NET course.
